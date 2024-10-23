@@ -1,6 +1,6 @@
 <?php
 
-namespace ContainerVmmzlln;
+namespace ContainerUrfbiyx;
 
 use Symfony\Component\DependencyInjection\Argument\RewindableGenerator;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -4449,7 +4449,7 @@ class appProdProjectContainer extends Container
      */
     protected function getFragment_ListenerService()
     {
-        return $this->services['fragment.listener'] = new \Symfony\Component\HttpKernel\EventListener\FragmentListener(${($_ = isset($this->services['uri_signer']) ? $this->services['uri_signer'] : ($this->services['uri_signer'] = new \Symfony\Component\HttpKernel\UriSigner('F7ssiV5PxMU4XVwNdNGZ93kpUDsWWMQ8HKKHwWKeQKcPHYQS9o4ebWsF9vwBAR7r'))) && false ?: '_'}, '/_fragment');
+        return $this->services['fragment.listener'] = new \Symfony\Component\HttpKernel\EventListener\FragmentListener(${($_ = isset($this->services['uri_signer']) ? $this->services['uri_signer'] : ($this->services['uri_signer'] = new \Symfony\Component\HttpKernel\UriSigner('BLndT6NgAEctzRg2nZwJTOuBPsY4vpr4q31D7Rf0KINaAHxx9c9XeO4GwkJwIDnu'))) && false ?: '_'}, '/_fragment');
     }
 
     /*
@@ -5003,7 +5003,7 @@ class appProdProjectContainer extends Container
      */
     protected function getUriSignerService()
     {
-        return $this->services['uri_signer'] = new \Symfony\Component\HttpKernel\UriSigner('F7ssiV5PxMU4XVwNdNGZ93kpUDsWWMQ8HKKHwWKeQKcPHYQS9o4ebWsF9vwBAR7r');
+        return $this->services['uri_signer'] = new \Symfony\Component\HttpKernel\UriSigner('BLndT6NgAEctzRg2nZwJTOuBPsY4vpr4q31D7Rf0KINaAHxx9c9XeO4GwkJwIDnu');
     }
 
     /*
@@ -5328,45 +5328,45 @@ class appProdProjectContainer extends Container
                 19 => 'ps_customtext',
                 20 => 'ps_dataprivacy',
                 21 => 'ps_emailsubscription',
-                22 => 'ps_facetedsearch',
-                23 => 'ps_faviconnotificationbo',
-                24 => 'ps_featuredproducts',
-                25 => 'ps_imageslider',
-                26 => 'ps_languageselector',
-                27 => 'ps_linklist',
-                28 => 'ps_mainmenu',
-                29 => 'ps_searchbar',
-                30 => 'ps_sharebuttons',
-                31 => 'ps_shoppingcart',
-                32 => 'ps_socialfollow',
-                33 => 'ps_themecusto',
-                34 => 'ps_wirepayment',
-                35 => 'statsbestcategories',
-                36 => 'statsbestcustomers',
-                37 => 'statsbestproducts',
-                38 => 'statsbestsuppliers',
-                39 => 'statsbestvouchers',
-                40 => 'statscarrier',
-                41 => 'statscatalog',
-                42 => 'statscheckup',
-                43 => 'statsdata',
-                44 => 'statsforecast',
-                45 => 'statsnewsletter',
-                46 => 'statspersonalinfos',
-                47 => 'statsproduct',
-                48 => 'statsregistrations',
-                49 => 'statssales',
-                50 => 'statssearch',
-                51 => 'statsstock',
-                52 => 'welcome',
-                53 => 'psgdpr',
-                54 => 'ps_mbo',
-                55 => 'ps_buybuttonlite',
-                56 => 'ps_checkout',
-                57 => 'ps_metrics',
-                58 => 'ps_facebook',
-                59 => 'psxmarketingwithgoogle',
-                60 => 'blockreassurance',
+                22 => 'ps_faviconnotificationbo',
+                23 => 'ps_featuredproducts',
+                24 => 'ps_imageslider',
+                25 => 'ps_languageselector',
+                26 => 'ps_linklist',
+                27 => 'ps_mainmenu',
+                28 => 'ps_searchbar',
+                29 => 'ps_sharebuttons',
+                30 => 'ps_shoppingcart',
+                31 => 'ps_socialfollow',
+                32 => 'ps_themecusto',
+                33 => 'ps_wirepayment',
+                34 => 'statsbestcategories',
+                35 => 'statsbestcustomers',
+                36 => 'statsbestproducts',
+                37 => 'statsbestsuppliers',
+                38 => 'statsbestvouchers',
+                39 => 'statscarrier',
+                40 => 'statscatalog',
+                41 => 'statscheckup',
+                42 => 'statsdata',
+                43 => 'statsforecast',
+                44 => 'statsnewsletter',
+                45 => 'statspersonalinfos',
+                46 => 'statsproduct',
+                47 => 'statsregistrations',
+                48 => 'statssales',
+                49 => 'statssearch',
+                50 => 'statsstock',
+                51 => 'welcome',
+                52 => 'psgdpr',
+                53 => 'ps_mbo',
+                54 => 'ps_buybuttonlite',
+                55 => 'ps_checkout',
+                56 => 'ps_metrics',
+                57 => 'ps_facebook',
+                58 => 'psxmarketingwithgoogle',
+                59 => 'blockreassurance',
+                60 => 'ps_facetedsearch',
             ],
             'container.autowiring.strict_mode' => true,
             'container.dumper.inline_class_loader' => false,
@@ -5381,15 +5381,15 @@ class appProdProjectContainer extends Container
             'mailer_host' => '127.0.0.1',
             'mailer_user' => NULL,
             'mailer_password' => NULL,
-            'secret' => 'F7ssiV5PxMU4XVwNdNGZ93kpUDsWWMQ8HKKHwWKeQKcPHYQS9o4ebWsF9vwBAR7r',
+            'secret' => 'BLndT6NgAEctzRg2nZwJTOuBPsY4vpr4q31D7Rf0KINaAHxx9c9XeO4GwkJwIDnu',
             'ps_caching' => 'CacheMemcache',
             'ps_cache_enable' => false,
             'ps_creation_date' => '2024-10-23',
             'locale' => 'en-US',
             'use_debug_toolbar' => true,
-            'cookie_key' => 'kwPR5OBJTHgR9z5orVULXDy6tJ8KtidhY0GIJCUwm48qrU4oo8DBR7Eo8INRsnoZ',
-            'cookie_iv' => 'MAG7aHNWeUc0J9GBmpDHi3Q9P8NIkqjL',
-            'new_cookie_key' => 'def00000c5a93fb3b4f1d49f35473c26380175c76eb83b0e29932b891bbb52635728e6b3d2f1bbd145ef3501ae782e22dd42b88ede937026218f0fe9c680f90d0aa99c31',
+            'cookie_key' => 'FzKeqHWJYmcrxN2psobyCcYwjIJ6eF2p60bIgCxqa2OXZjtSbtChJ9LnWamktYbr',
+            'cookie_iv' => 'EjZaWco35o3qYqsaULe6hP3DJ6qeVavp',
+            'new_cookie_key' => 'def00000a2966d87ebb462d67510890655c20a0eb6951f6ed3b6f5ba92f7ab1e29840d58b51a0a11c9a328f02789b6758769650d9feeb81de72b6e6af1afef79e063875b',
             'cache.driver' => 'array',
             'env(PS_THEME_NAME)' => 'classic',
             'AdapterSecurityAdminClass' => 'PrestaShop\\PrestaShop\\Adapter\\Security\\Admin',
@@ -5398,7 +5398,7 @@ class appProdProjectContainer extends Container
             'mail_themes_uri' => '/mails/themes',
             'fragment.renderer.hinclude.global_template' => NULL,
             'fragment.path' => '/_fragment',
-            'kernel.secret' => 'F7ssiV5PxMU4XVwNdNGZ93kpUDsWWMQ8HKKHwWKeQKcPHYQS9o4ebWsF9vwBAR7r',
+            'kernel.secret' => 'BLndT6NgAEctzRg2nZwJTOuBPsY4vpr4q31D7Rf0KINaAHxx9c9XeO4GwkJwIDnu',
             'kernel.http_method_override' => true,
             'kernel.trusted_hosts' => [
 
