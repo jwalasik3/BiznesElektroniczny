@@ -1,0 +1,15 @@
+# Ignorowanie plików dynamicznych Prestashop
+/src/app/cache/*
+/src/app/logs/*
+/src/img/tmp/*
+/src/img/upload/*
+/src/vendor/*
+/src/translations/*
+/src/config/xml/*
+/src/themes/*/cache/*
+/src/mails/*/translations/*
+
+# Ignorowanie baz danych i innych plików tymczasowych
+/db_data/*
+*.sql
+*.log
