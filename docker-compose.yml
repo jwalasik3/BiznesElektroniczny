@@ -17,9 +17,6 @@ services:
 
   prestashop:
     image: prestashop/prestashop:1.7.8
-    build:
-      context: .
-      dockerfile: Dockerfile
     container_name: prestashop
     environment:
       DB_SERVER: mysql
