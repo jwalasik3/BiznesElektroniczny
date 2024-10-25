@@ -17,6 +17,9 @@ services:
 
   prestashop:
     image: prestashop/prestashop:1.7.8
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: prestashop
     environment:
       DB_SERVER: mysql
@@ -28,7 +31,6 @@ services:
       - mysql
     networks:
       - prestashop
-    command: /bin/bash -c "chown -R www-data:www-data /var/www/html && find /var/www/html -type d -exec chmod 755 {} \; && find /var/www/html -type f -exec chmod 644 {} \; && apache2-foreground"
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
