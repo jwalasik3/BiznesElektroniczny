@@ -1,0 +1,114 @@
+/*
+ * Custom code goes here.
+ * A template should always ship with an empty custom.css
+ */
+#header {
+    background: #98ebe2; /*Najwy¿ej le¿¹cy pasek z Contact us*/
+}
+
+body {
+    background-color: #ffdcfc; /*Nic nie robi chyba*/
+}
+
+#wrapper {
+    background-color: #ffdcfc; /* T³o za produktami */
+}
+
+#main {
+    background-color: #ffe5d8; /* T³o wyœwietlania produktów */
+}
+
+footer {
+    background-color: #f0eded; /* Dolna czêœæ strony */
+}
+
+#header .header-top {
+    background-color: #ffb8d9; /* Czêœæ z logo i search barem */
+}
+#header .header-top a[data-depth="0"] { /* Tekst, kategorie. */
+        color: black;
+        text-transform: uppercase;
+}
+
+.popover {
+    background-color: #ffb8d9; /* Menu rozwijane */
+}
+
+#custom-text {
+    background-color: #faafaf; /* Custom text block */
+}
+
+#blockEmailSubscription_displayFooterBefore {
+    background-color: #dbdbdb /*Czêœæ z emailem*/
+}
+#header .header-nav .blockcart {
+    height: 3rem; /* Czêœæ z wózkiem */
+    padding: 0.75rem;
+    margin-left: 0.9375rem;
+    text-align: center;
+    white-space: nowrap;
+    background: #b8ceff;
+}
+#header .header-nav .blockcart { /*Text Cart*/
+    text-align: center;
+    white-space: nowrap;
+    color: black;
+}
+#header .header-nav .cart-preview .shopping-cart { /* Ikona Wózka*/
+    color: #fff; 
+    vertical-align: middle;
+}
+
+
+/* Wszystkie powy¿sze dotycz¹ strony g³ównej poni¿ej dla konkretnych podstron: */
+
+.card-block {
+    background-color: #ff5b4d; /* Ramka Contact Us*/
+}
+
+#content .contact-form {
+    background-color: #ffc2bd; /* T³o Contact Us dla podstrony z formularzem */
+}
+
+#content .login-form {
+    background-color: #ffdbd8; /* T³o logowania */
+}
+
+.page-authentication #content { /* Ramka */
+    padding: 1rem;
+    background: #ffdbd8;
+    max-width: 640px;
+    margin: 0 auto;
+    margin-bottom: 0px;
+}
+
+#content .register-form {
+    background-color: #ffc2bd; /* T³o rejestracji */
+}
+
+.page-authentication #content { /* Ramka */
+    padding: 1rem;
+    background: #ff8484;
+    max-width: 640px;
+    margin: 0 auto;
+    margin-bottom: 0px;
+}
+
+#content .forgotten-password {
+    background-color: #ffe5d8; /* T³o reset has³a */
+}
+.page-customer-account #content { /* Ramka */
+    background-color: #ffe5d8;
+}
+
+.block-categories {
+    background-color: #ffe5d8; /* Nazwa kategori */
+}
+
+#search_filters {
+    background-color: #ffe5d8; /* Filtry wyszukiwania */
+}
+
+.block-category {
+    background-color: #ffdbd8; /* Wyœwietlanie dla men women etc*/
+}
