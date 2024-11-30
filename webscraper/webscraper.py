@@ -97,14 +97,14 @@ def scrape_data(product_name, driver):
             price = None
 
     try:
-        description1 = driver.find_element(By.XPATH, '//div[@class="woocommerce-product-details__short-description"]').text
+        description1 = driver.find_element(By.XPATH, '//div[@class="woocommerce-product-details__short-description"]').text.rstrip('/n')
     except NoSuchElementException:
         try:
-            description1 = driver.find_element(By.XPATH, '//div[@class="product-long-desc"]').text
+            description1 = driver.find_element(By.XPATH, '//div[@class="product-long-desc"]').text.rstrip('/n')
         except NoSuchElementException:
             description1 = None
     try:
-        description2 = driver.find_element(By.ID, "tab-description").text
+        description2 = driver.find_element(By.ID, "tab-description").text.rstrip('/n')
     except NoSuchElementException:
         description2 = None
 
@@ -215,7 +215,7 @@ os.makedirs(images_dir, exist_ok=True)
 
 scrape_categories(images_dir)
 print(products_df)
-products_df.to_csv('product_data_scraped.csv')
+products_df.to_csv('product_data_scraped.csv', sep=';')
 
 end_time = time.time()
 print("Execution time: ", end_time - start_time)
