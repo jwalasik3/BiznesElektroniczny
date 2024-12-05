@@ -52,6 +52,7 @@
   <h3 class="seasonal_subtitle" style="text-align:center;">
        Tematyczne, sezonowe zestawy szydełkowe zawierające materiały dla 6 unikalnych wzorów oraz 3 miesiące Członkowstwa Club Crochet Pattern
   </h3>
+  {include file="catalog/_partials/productlist.tpl" products=$products cssClass="row" productClass="col-xs-12 col-sm-6 col-lg-4 col-xl-3"}
 </section>
 
 <section class="yellow_box"  style="margin: 20px;">
@@ -72,7 +73,7 @@
   <h3 class="materials_subtitle" style="text-align:center;">                     
   Zaopatrz się w zapasy, w tym w naszą ekskluzywną włóczkę bawełnianą Club Crochet amigurumi.                
   </h3>
-
+  {include file="catalog/_partials/productlist.tpl" products=$products cssClass="row" productClass="col-xs-12 col-sm-6 col-lg-4 col-xl-3"}
 </section>
 
 <section class="merch"  style="margin: 20px;">

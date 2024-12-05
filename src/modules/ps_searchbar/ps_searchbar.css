@@ -1,10 +1,11 @@
 #header, #header .header-top {
-  background-color: white;
+  background-color: #001234;
 }
 
 #search_widget {
-  margin-bottom: .625rem;
   overflow: auto;
+  border-radius: 20px;
+  height: 40px;
 }
 #search_widget form {
   position: relative;
@@ -21,13 +22,13 @@
   width: 100%;
   padding: 10px 20px 10px 40px;
   outline: none;
-  background-color: #f1f1f1;
+  background-color: #fff;
   border: none;
   border-radius: 5px;
 }
 
 .ui-autocomplete.searchbar-autocomplete {
-  width: 100%;
+  width: 80%;
   min-height: 100%;
   border: none;
 }
@@ -42,7 +43,7 @@
 }
 
 .ui-autocomplete.searchbar-autocomplete li a:hover {
-  background-color: #f1f1f1;
+  background-color: #fff;
   cursor: pointer;
 }
 
@@ -60,7 +61,7 @@
   }
 
   .ui-autocomplete.searchbar-autocomplete {
-    width: 400px;
+    width: 250px;
     min-height: auto;
     left: auto;
   }

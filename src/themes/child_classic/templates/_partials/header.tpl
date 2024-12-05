@@ -44,13 +44,13 @@
           {/if}
         </div>
         <div class="hidden-sm-down">
-          <div class="col-md-5 col-xs-12">
-            {hook h='displayNav1'}
-          </div>
           <div class="col-md-7 right-nav">
               {hook h='displayNav2'}
           </div>
+              <br>
+              <br>
         </div>
+        
         <div class="hidden-md-up text-sm-center mobile">
           <div class="float-xs-left" id="menu-icon">
             <i class="material-icons d-inline">&#xE5D2;</i>
@@ -63,6 +63,7 @@
       </div>
     </div>
   </nav>
+  {hook h='displayNavFullWidth'}
 {/block}
 
 {block name='header_top'}
@@ -82,7 +83,6 @@
         </div>
       </div>
     </div>
-  {hook h='displayNavFullWidth'}
   </div>
   
 {/block}
