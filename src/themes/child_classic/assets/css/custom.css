@@ -26,8 +26,19 @@ footer {
 
 #header .header-top {
     background-color: #011234; /* Czêœæ z logo i search barem */
-    align-content: center;
-    justify-content: center;
+    align-content: initial;
+    justify-content: center;	
+}
+
+
+.top-menu {
+    
+    display: flex;               /* Rozkłada elementy w poziomie */
+    justify-content: center;     /* Centruje menu na środku strony */
+    align-items: center;         /* Wyśrodkowanie w pionie */
+    padding: 10px 0;             /* Dodaj odstępy */
+    width: 100%;                 /* Rozciągnij na całą szerokość strony */
+    font-family: "Montserrat Alternates", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Open Sans", sans-serif;
 }
 #header .header-top a[data-depth="0"] { /* Tekst, kategorie. */
         color: #fff;
@@ -36,6 +47,7 @@ footer {
 #header .header-top a[data-depth="0"]:hover {
     color: #011234;
     background-color: #fff;
+    border-radius: 20px;
 }
 
 .popover {
@@ -68,7 +80,57 @@ footer {
     background-color: #011234;
 }
 
+.learn_title {
+  font-family: "Montserrat Alternates", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Open Sans", sans-serif;
+  color: #493987;
+  font-weight: 700;
+  font-size: 1.65em;
+  margin-bottom: 8px;
+}
 
+.seasonal_title {
+  font-family: "Montserrat Alternates", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Open Sans", sans-serif;
+  color: #493987;
+  font-weight: 700;
+  font-size: 1.65em;
+  margin-bottom: 8px;
+}
+
+.materials_title {
+  font-family: "Montserrat Alternates", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Open Sans", sans-serif;
+  color: #493987;
+  font-weight: 700;
+  font-size: 1.65em;
+  margin-bottom: 8px;
+}
+.merch_title {
+  font-family: "Montserrat Alternates", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Open Sans", sans-serif;
+  color: #493987;
+  font-weight: 700;
+  font-size: 1.65em;
+  margin-bottom: 8px;
+}
+
+.box {
+  background-color: transparent;
+  background-image: linear-gradient(154deg, #E1A821 35%, #DA901C 90%);
+  padding-left: 50%
+}
+#header .header-top > .container > .row:first-of-type { 
+  width: 100%;
+}
+
+#category-3, #category-9, #category-12, #category-10, #category-11 {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+@media (min-width: 768px) {
+  .col-md-7 {
+    float: left;
+    width: 82.3%;
+  }
+}
 /* Wszystkie powy¿sze dotycz¹ strony g³ównej poni¿ej dla konkretnych podstron: */
 
 .card-block {

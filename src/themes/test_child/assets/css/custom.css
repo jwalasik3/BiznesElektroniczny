@@ -1,0 +1,144 @@
+/*
+ * Custom code goes here.
+ * A template should always ship with an empty custom.css
+ */
+ #header {
+    background: #011234; /*Najwy¿ej le¿¹cy pasek z Contact us*/
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+body {
+    background-color: #fff; /*Nic nie robi chyba*/
+}
+
+#wrapper {
+    background-color: #f9f9f9; /* T³o za produktami */
+}
+
+#main {
+    background-color: #fff; /* T³o wyœwietlania produktów */
+}
+
+footer {
+    background-color: #f9f9f9; /* Dolna czêœæ strony */
+}
+
+#header .header-top {
+    background-color: #011234; /* Czêœæ z logo i search barem */
+    align-content: center;
+    justify-content: center;
+}
+#header .header-top a[data-depth="0"] { /* Tekst, kategorie. */
+        color: #fff;
+}
+
+#header .header-top a[data-depth="0"]:hover {
+    color: #011234;
+    background-color: #fff;
+}
+
+.popover {
+    background-color: #001234; /* Menu rozwijane */
+}
+
+#custom-text {
+    background-color: #fff; /* Custom text block */
+}
+
+#blockEmailSubscription_displayFooterBefore {
+    background-color: #dbdbdb /*Czêœæ z emailem*/
+}
+#header .header-nav .blockcart {
+    height: 3rem; /* Czêœæ z wózkiem */
+    padding: 0.75rem;
+    margin-left: 0.9375rem;
+    text-align: center;
+    white-space: nowrap;
+    background: #011234;
+}
+#header .header-nav .blockcart { /*Text Cart*/
+    text-align: center;
+    white-space: nowrap;
+    color: black;
+}
+#header .header-nav .cart-preview .shopping-cart { /* Ikona Wózka*/
+    color: #fff; 
+    vertical-align: middle;
+    background-color: #011234;
+}
+
+.learn_title {
+    color: #493987;
+}
+
+/* Wszystkie powy¿sze dotycz¹ strony g³ównej poni¿ej dla konkretnych podstron: */
+
+.card-block {
+    background-color: #011234; /* Ramka Contact Us*/
+}
+
+#content .contact-form {
+    background-color: #011234; /* T³o Contact Us dla podstrony z formularzem */
+}
+
+#content .login-form {
+    background-color: #50AFA2; /* T³o logowania */
+}
+
+.page-authentication #content { /* Ramka */
+    padding: 1rem;
+    background: #fff;
+    max-width: 640px;
+    margin: 0 auto;
+    margin-bottom: 0px;
+}
+
+#content .register-form {
+    background-color: #fff; /* T³o rejestracji */
+    color: #011234;
+}
+
+.page-authentication #content { /* Ramka */
+    padding: 1rem;
+    background: #011234;
+    max-width: 640px;
+    margin: 0 auto;
+    margin-bottom: 0px;
+}
+
+#content .forgotten-password {
+    background-color: #fff; /* T³o reset has³a */
+}
+.page-customer-account #content { /* Ramka */
+    background-color: #fff;
+}
+
+.block-categories {
+    background-color: #011234; /* Nazwa kategori */
+}
+
+#search_filters {
+    background-color: #fff; /* Filtry wyszukiwania */
+}
+
+.block-category {
+    background-color: #011234; /* Wyœwietlanie dla men women etc*/
+}
+
+.search-bar {
+    width: 300px; 
+    height: 40px; 
+    border-radius: 25px; 
+    border: 1px solid #ccc;
+    padding: 10px; 
+    font-size: 16px; 
+    background-color: #f9f9f9; 
+}
+
+.block-search {
+    display: flex; 
+    justify-content: center; 
+    margin: 10px auto; 
+    width: 100%;
+}

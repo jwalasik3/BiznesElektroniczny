@@ -1,6 +1,13 @@
 version: '3.9'
 
 services:
+  web:
+    image: php:7.4-fpm
+    container_name: php-fpm
+    volumes:
+      - ./src:/var/www/html
+    networks:
+      - prestashop
   mysql:
     image: mysql:8
     container_name: prestashop-db
@@ -39,6 +46,19 @@ services:
       - 8081:80
     depends_on:
       - mysql
+    networks:
+      - prestashop
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports: 
+      - "443:443"
+    volumes:
+      - ./certs:/etc/nginx/certs
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - prestashop
     networks:
       - prestashop
 

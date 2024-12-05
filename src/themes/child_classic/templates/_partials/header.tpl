@@ -70,7 +70,7 @@
     <div class="container">
       <div class="row">
         <div class="header-top-right col-md-10 col-sm-12 position-static">
-          {hook h='displayTop'}
+           {hook h='displayTop'}
         </div>
       </div>
       <div id="mobile_top_menu_wrapper" class="row hidden-md-up" style="display:none;">
@@ -82,6 +82,7 @@
         </div>
       </div>
     </div>
-  </div>
   {hook h='displayNavFullWidth'}
+  </div>
+  
 {/block}
