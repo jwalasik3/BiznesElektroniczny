@@ -11,12 +11,28 @@ import os
 import requests
 import pandas as pd
 import concurrent.futures
+import shutil
 
-products_df = pd.DataFrame(columns=['name', 'price', 'description1', 'description2'])
+"""
+Instrukcja obsługi xd:
+1. Wszystkie zdjecia zapisuja sie bezposrednio w all_images, zeby latwiej sie kopiowalo
+2. Zdjecia sa rowniez ladnie zapisane w folderach w folderze images
+3. Jesli masz dobry internet, to ustaw wiecej watkow w kodzie nizej, zeby szybciej dzialalo
+
+"""
+base_img_url = 'http://localhost:8080/img/p/'
+"""
+Do zmiennej powyzej wpisz sciezke do zdjec, z ktorej presta bedzie kopiowac zdjecia w czasie importu
+"""
+
+
+products_df = pd.DataFrame(columns=['Name', 'Categories', 'Price', 'Long desc', 'Short desc', 'Image URLs'])
+all_images_dir = 'all_images'
+os.makedirs(all_images_dir, exist_ok=True)
 
 def make_valid_directory_name(input_string):
-    valid_name = input_string.replace(' ', '_')
-    valid_name = re.sub(r'[<>:"/\\|?*]', '', valid_name)
+    valid_name = input_string.replace(' ', '')
+    valid_name = re.sub(r'[-–<>:_+"/\\|?*]', '', valid_name)
     valid_name = valid_name.strip()
 
     return valid_name
@@ -28,10 +44,18 @@ def download_single_image(img_url, img_path, retries=10, timeout=15):
         try:
             response = requests.get(img_url, headers=headers, stream=True, timeout=timeout)
             if response.status_code == 200:
-                with open(img_path, 'wb') as file:
-                    for chunk in response.iter_content(1024):
-                        file.write(chunk)
-                return
+                try:
+                    with open(img_path, 'wb') as file:
+                        for chunk in response.iter_content(1024):
+                            file.write(chunk)
+                    shutil.copy(img_path, all_images_dir)
+                    return
+                except FileNotFoundError as e:
+                    print(f"File not found error: {e}")
+                except PermissionError as e:
+                    print(f"Permission error: {e}")
+                except Exception as e:
+                    print(f"Unexpected error: {e}")
             else:
                 print(f"Failed to download {img_url}, status code: {response.status_code}")
         except requests.exceptions.RequestException as e:
@@ -40,20 +64,26 @@ def download_single_image(img_url, img_path, retries=10, timeout=15):
     print(f"Failed to download {img_url} after {retries} attempts")
 
 # Function to download multiple images concurrently
-def download_images(images, imgs_dir):
+def download_images(images, imgs_dir, product_name):
+    image_urls = []
     with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
         futures = []
         for i, img in enumerate(images):
             img_url = img.get_attribute('src')
-            img_name = f'image_{i + 1}.jpg'
+            img_name = f'{make_valid_directory_name(product_name)}_{i + 1}.jpg'
             img_path = os.path.join(imgs_dir, img_name)
+            image_urls.append(base_img_url  + img_name)
             futures.append(executor.submit(download_single_image, img_url, img_path))
         concurrent.futures.wait(futures)
+    return image_urls
 
-def scrape_images(images_dir, driver):
+def scrape_images(images_dir, driver, product_name):
     big_imgs_dir = os.path.join(images_dir, 'full_size')
     os.makedirs(big_imgs_dir, exist_ok=True)
-
+    big_img_urls = []
+    min_img_urls = []
+    if product_name == 'Themed Crochet Kit Bundle – Dinosaur + Cactus + Whale Beginner Crochet Kits':
+        print('sprawdzmy to !')
     try:
         images = WebDriverWait(driver, timeout=10).until(
             EC.presence_of_element_located((By.TAG_NAME, 'figure'))
@@ -63,13 +93,13 @@ def scrape_images(images_dir, driver):
             print(f"No images found for {images_dir}")
             raise RuntimeError(f"Failed to find images for {images_dir}")
         else:
-            download_images(images, big_imgs_dir)
+            big_img_urls = download_images(images, big_imgs_dir, product_name)
 
     except Exception:
         print(f"No images found for {images_dir}")
         raise RuntimeError(f"Failed to find images for {images_dir}")
 
-    try:
+    """try:
         WebDriverWait(driver, timeout=3).until(
             EC.presence_of_element_located((By.XPATH, '//ol[@class="flex-control-nav flex-control-thumbs"]//img'))
         )
@@ -79,20 +109,26 @@ def scrape_images(images_dir, driver):
 
         miniatures = driver.find_elements(By.XPATH, '//ol[@class="flex-control-nav flex-control-thumbs"]//img')
         if miniatures:
-            download_images(miniatures, min_imgs_dir)
+            min_img_urls = download_images(miniatures, min_imgs_dir, product_name + 'mini')
     except TimeoutException:
-        pass
+        pass"""
 
     if not os.listdir(big_imgs_dir):
-        print(f"Warning: {images_dir} is empty after scraping.")
+        print(f"Warning: {images_dir} is empty after scraping. product name: {product_name}")
         raise RuntimeError(f"No images downloaded for {images_dir}")
+
+    return big_img_urls + min_img_urls
+
+
 
 def scrape_data(product_name, driver):
     try:
         price = driver.find_element(By.XPATH, '//div[@class="product-title-container"]/p/span/bdi').text
+        price = float(price.replace("$", ""))
     except NoSuchElementException:
         try:
             price = driver.find_element(By.XPATH, '//div[@id="open-atc-options"]/span[last()]').text.strip()
+            price = float(price.replace("$", ""))
         except NoSuchElementException:
             price = None
 
@@ -108,22 +144,26 @@ def scrape_data(product_name, driver):
     except NoSuchElementException:
         description2 = None
 
-    products_df.loc[len(products_df)] = {'name': product_name,
-                                         'price': price,
-                                         'description1': description1,
-                                         'description2': description2 }
+    product_data = {'Name': product_name,
+                    'Price': price,
+                    'Long desc': description1,
+                    'Short desc': description2 }
 
+    return product_data
 
-def scrape_product_page(url, product_dir, driver, product_name):
+def scrape_product_page(url, product_dir, driver, product_name, category_name):
     try:
         driver.get(url)
         os.makedirs(product_dir, exist_ok=True)
-        scrape_images(product_dir, driver)
-        scrape_data(product_name, driver)
+        img_urls = scrape_images(product_dir, driver, product_name)
+        product_data = scrape_data(product_name, driver)
+        product_data['Image URLs'] = "|".join(img_urls)
+        product_data['Categories'] = category_name
+        products_df.loc[len(products_df)] = product_data
     except Exception as e:
         print(f"Error scraping {url}: {e}")
 
-def scrape_products_from_current_page(driver, images_dir):
+def scrape_products_from_current_page(driver, images_dir, category_name):
     products = driver.find_elements(By.XPATH,
                                     '//ul[@class="shop-item-list"]//li[@class="shop-item"]//a[@class="product-title"]')
     product_names = []
@@ -137,28 +177,28 @@ def scrape_products_from_current_page(driver, images_dir):
 
     for i, url in enumerate(product_urls):
         product_dir = os.path.join(images_dir, dir_names[i])
-        scrape_product_page(url, product_dir, driver, product_names[i])
+        scrape_product_page(url, product_dir, driver, product_names[i], category_name)
 
-def scrape_single_page(page_url, images_dir):
+def scrape_single_page(page_url, images_dir, category_name):
     service = Service(executable_path="chromedriver.exe")
     driver = webdriver.Chrome(service=service)
 
     try:
         driver.get(page_url)
-        scrape_products_from_current_page(driver, images_dir)
+        scrape_products_from_current_page(driver, images_dir, category_name)
     except Exception as e:
         print(f"Error scraping {page_url}: {e}")
     finally:
         driver.quit()
 
-def scrape_all_pages_concurrently(page_urls, images_dir):
-    with concurrent.futures.ThreadPoolExecutor(max_workers=6) as executor: # set 3 with poor internet
+def scrape_all_pages_concurrently(page_urls, images_dir, category_name):
+    with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor: # set 3 with poor internet
         futures = []
         for page_url in page_urls:
-            futures.append(executor.submit(scrape_single_page, page_url, images_dir))
+            futures.append(executor.submit(scrape_single_page, page_url, images_dir, category_name))
         concurrent.futures.wait(futures)
 
-def scrape_one_category(category_url, category_dir_name):
+def scrape_one_category(category_url, category_dir_name, category_name):
     service = Service(executable_path="chromedriver.exe")
     driver = webdriver.Chrome(service=service)
     driver.get(category_url)
@@ -177,13 +217,13 @@ def scrape_one_category(category_url, category_dir_name):
             driver.get(next_page_url)
         except Exception:
             if len(page_urls) == 1:
-                scrape_products_from_current_page(driver, category_dir_name)
+                scrape_products_from_current_page(driver, category_dir_name, category_name)
             break  # No more pages, stop gathering URLs
 
     driver.quit()
 
     if len(page_urls) > 1:
-        scrape_all_pages_concurrently(page_urls, category_dir_name)
+        scrape_all_pages_concurrently(page_urls, category_dir_name, category_name)
 
 def scrape_categories(images_dir):
     service = Service(executable_path="chromedriver.exe")
@@ -200,12 +240,12 @@ def scrape_categories(images_dir):
 
     driver.quit()
 
-    with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor: # set 1 with poor internet
+    with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor: # set 1 with poor internet
         futures = []
         for i, url in enumerate(category_urls):
             category_dir_name = os.path.join(images_dir,make_valid_directory_name(category_names[i]))
             os.makedirs(category_dir_name, exist_ok=True)
-            futures.append(executor.submit(scrape_one_category, category_urls[i], category_dir_name))
+            futures.append(executor.submit(scrape_one_category, category_urls[i], category_dir_name, category_names[i]))
         concurrent.futures.wait(futures)
 
 start_time = time.time()
@@ -214,8 +254,9 @@ images_dir = 'images'
 os.makedirs(images_dir, exist_ok=True)
 
 scrape_categories(images_dir)
+
 print(products_df)
-products_df.to_csv('product_data_scraped.csv', sep=';')
+products_df.to_csv('product_data_scraped.csv', sep=';', index=True, index_label='ID')
 
 end_time = time.time()
 print("Execution time: ", end_time - start_time)
