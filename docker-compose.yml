@@ -1,13 +1,6 @@
 version: '3.9'
 
 services:
-  web:
-    image: php:7.4-fpm
-    container_name: php-fpm
-    volumes:
-      - ./src:/var/www/html
-    networks:
-      - prestashop
   mysql:
     image: mysql:8
     container_name: prestashop-db
