@@ -57,11 +57,12 @@
 
 <section class="yellow_box"  style="margin: 20px;">
 	<div class="box" style="width: 100%; height: 200px; background-color: #E1A821; border-radius: 20px; color: white;">
-	<h2>Club Crochet Roczna Przepustka</h2>
-	<h3>Kup roczny zapas sezonowych zestawów dostarczony do twoich drzwi i zaoszczędź 15%!</h3>
-	<h3>	24+ projektów szydełkowych</h3>
-	<h3>12 miesięcy członkowstwa klubu</h3>
-	<h3>Bonusowe przypinki</h3>
+    
+    <h2>Club Crochet Roczna Przepustka</h2>
+    <h3>Kup roczny zapas sezonowych zestawów dostarczony do twoich drzwi i zaoszczędź 15%!</h3>
+    <h3>	24+ projektów szydełkowych</h3>
+    <h3>12 miesięcy członkowstwa klubu</h3>
+    <h3>Bonusowe przypinki</h3>
 	</div>
 </secton>
 
