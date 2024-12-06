@@ -1,5 +1,4 @@
 /src/var/log/
 /src/var/logs/
-/src/var/cache/dev/
-/src/var/cache/prod/
 /webscraper/venv
+/src/var/cache/dev/circuit_breaker
