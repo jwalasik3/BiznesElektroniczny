@@ -52,15 +52,17 @@
   <h3 class="seasonal_subtitle" style="text-align:center;">
        Tematyczne, sezonowe zestawy szydełkowe zawierające materiały dla 6 unikalnych wzorów oraz 3 miesiące Członkowstwa Club Crochet Pattern
   </h3>
+  {include file="catalog/_partials/productlist.tpl" products=$products cssClass="row" productClass="col-xs-12 col-sm-6 col-lg-4 col-xl-3"}
 </section>
 
 <section class="yellow_box"  style="margin: 20px;">
 	<div class="box" style="width: 100%; height: 200px; background-color: #E1A821; border-radius: 20px; color: white;">
-	<h2>Club Crochet Roczna Przepustka</h2>
-	<h3>Kup roczny zapas sezonowych zestawów dostarczony do twoich drzwi i zaoszczędź 15%!</h3>
-	<h3>	24+ projektów szydełkowych</h3>
-	<h3>12 miesięcy członkowstwa klubu</h3>
-	<h3>Bonusowe przypinki</h3>
+    
+    <h2>Club Crochet Roczna Przepustka</h2>
+    <h3>Kup roczny zapas sezonowych zestawów dostarczony do twoich drzwi i zaoszczędź 15%!</h3>
+    <h3>	24+ projektów szydełkowych</h3>
+    <h3>12 miesięcy członkowstwa klubu</h3>
+    <h3>Bonusowe przypinki</h3>
 	</div>
 </secton>
 
@@ -72,7 +74,7 @@
   <h3 class="materials_subtitle" style="text-align:center;">                     
   Zaopatrz się w zapasy, w tym w naszą ekskluzywną włóczkę bawełnianą Club Crochet amigurumi.                
   </h3>
-
+  {include file="catalog/_partials/productlist.tpl" products=$products cssClass="row" productClass="col-xs-12 col-sm-6 col-lg-4 col-xl-3"}
 </section>
 
 <section class="merch"  style="margin: 20px;">

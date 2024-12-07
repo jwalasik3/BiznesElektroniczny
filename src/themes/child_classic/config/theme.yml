@@ -1,7 +1,7 @@
 parent: classic
 name: child_classic
 display_name: crochet theme
-version: 0.0.1
+version: 0.0.2
 assets:
   use_parent_assets: true
 author:

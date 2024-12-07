@@ -33,7 +33,7 @@
         <div class="box" style="width: 100%; height: 200px; background-color: black; border-radius: 20px; color: white; text-align: center;">
         <h1>Placeholder</h1>
         </div>
-</secton>
+</section>
 
 <section class="learn to crochet" style="margin: 20px;">
   <h2 class="learn_title" style="text-align:center;">
@@ -56,13 +56,18 @@
 
 <section class="yellow_box"  style="margin: 20px;">
 	<div class="box" style="width: 100%; height: 200px; background-color: #E1A821; border-radius: 20px; color: white;">
-	<h2>Club Crochet Roczna Przepustka</h2>
-	<h3>Kup roczny zapas sezonowych zestawów dostarczony do twoich drzwi i zaoszczędź 15%!</h3>
-	<h3>	24+ projektów szydełkowych</h3>
-	<h3>12 miesięcy członkowstwa klubu</h3>
-	<h3>Bonusowe przypinki</h3>
+  <div class="yellow-left">
+    <img class="annual-pass-img" src='/img/annual-pass.jpg'>
+  </div>
+  <div class="yellow-right">
+    <h2>Club Crochet Roczna Przepustka</h2>
+    <h3>Kup roczny zapas sezonowych zestawów dostarczony do twoich drzwi i zaoszczędź 15%!</h3>
+    <h3>	24+ projektów szydełkowych</h3>
+    <h3>12 miesięcy członkowstwa klubu</h3>
+    <h3>Bonusowe przypinki</h3>
+  </div>
 	</div>
-</secton>
+</section>
 
 <section class="materials"  style="margin: 20px;">                                                                                   
                      
