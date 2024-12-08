@@ -1,4 +1,4 @@
 # ignore cache
 
 src/cache/
-scr/var/cache/
+src/var/cache/

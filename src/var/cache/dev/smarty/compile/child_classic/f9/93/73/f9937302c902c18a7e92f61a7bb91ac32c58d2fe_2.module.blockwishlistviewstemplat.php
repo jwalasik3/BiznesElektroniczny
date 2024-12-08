@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.48, created on 2024-12-06 20:16:27
+/* Smarty version 3.1.48, created on 2024-12-08 23:23:16
   from 'module:blockwishlistviewstemplat' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.48',
-  'unifunc' => 'content_67534d8b36e382_28181358',
+  'unifunc' => 'content_67561c548df013_67132406',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f9937302c902c18a7e92f61a7bb91ac32c58d2fe' => 
     array (
       0 => 'module:blockwishlistviewstemplat',
-      1 => 1733498463,
+      1 => 1733587718,
       2 => 'module',
     ),
   ),
@@ -20,8 +20,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_67534d8b36e382_28181358 (Smarty_Internal_Template $_smarty_tpl) {
-?><!-- begin /var/www/html/modules/blockwishlist/views/templates/components/modals/delete.tpl -->
+function content_67561c548df013_67132406 (Smarty_Internal_Template $_smarty_tpl) {
+?><!-- begin /var/www/html/themes/child_classic/modules/blockwishlist/views/templates/components/modals/delete.tpl -->
 <div
   class="wishlist-delete"
   <?php if ((isset($_smarty_tpl->tpl_vars['listUrl']->value))) {?>
@@ -102,5 +102,5 @@ function content_67534d8b36e382_28181358 (Smarty_Internal_Template $_smarty_tpl)
   </div>
 </div>
 
-<!-- end /var/www/html/modules/blockwishlist/views/templates/components/modals/delete.tpl --><?php }
+<!-- end /var/www/html/themes/child_classic/modules/blockwishlist/views/templates/components/modals/delete.tpl --><?php }
 }
