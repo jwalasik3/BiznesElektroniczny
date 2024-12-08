@@ -97,7 +97,7 @@ def register_account(driver, firstname, lastname, email, password):
         create_account_url = create_account_link.get_attribute('href')
         driver.get(create_account_url)
 
-        social_title = driver.find_element(By.ID, 'field-id_gender-1')  # Change to 'field-id_gender-2' for Mrs.
+        social_title = driver.find_element(By.ID, 'field-id_gender-1')  
         social_title.click()
 
         first_name = driver.find_element(By.ID, 'field-firstname')
@@ -112,15 +112,15 @@ def register_account(driver, firstname, lastname, email, password):
         password_field = driver.find_element(By.ID, 'field-password')
         password_field.send_keys(password)
 
-        # Check "Customer data privacy"
+        
         privacy_checkbox = driver.find_element(By.NAME, 'customer_privacy')
         privacy_checkbox.click()
 
-        # Check "Agree to terms and conditions"
+       
         terms_checkbox = driver.find_element(By.NAME, 'psgdpr')
         terms_checkbox.click()
 
-        # Click the save button
+        
         save_button = driver.find_element(By.XPATH, '//button[@data-link-action="save-customer"]')
         save_button.click()
 
@@ -149,17 +149,17 @@ def sign_in(driver, email, password):
     sign_in_url = sign_in_link.get_attribute('href')
     driver.get(sign_in_url)
     try:
-        # Fill in the email field
+        
         email_field = WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.ID, "field-email"))
         )
-        email_field.send_keys(email)  # Replace with your test email
+        email_field.send_keys(email)  
 
-        # Fill in the password field
+        
         password_field = driver.find_element(By.ID, "field-password")
-        password_field.send_keys(password)  # Replace with your test password
+        password_field.send_keys(password)  
 
-        # Click the "Sign in" button
+        
         sign_in_button = driver.find_element(By.ID, "submit-login")
         sign_in_button.click()
 
@@ -168,7 +168,7 @@ def sign_in(driver, email, password):
 
 def fill_in_address_form(driver):
     try:
-        # Wait for the page to load
+        
         WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.CLASS_NAME, "js-address-form"))
         )
@@ -186,9 +186,9 @@ def fill_in_address_form(driver):
             driver.find_element(By.ID, "field-lastname").send_keys("Doe")
             driver.find_element(By.ID, "field-address1").send_keys("123 Main Street Apartment 4B")
             driver.find_element(By.ID, "field-city").send_keys("New York")
-        #    driver.find_element(By.ID, "field-id_state").send_keys("New York")  # Replace with actual value
+        
             driver.find_element(By.ID, "field-postcode").send_keys("10-001")
-            driver.find_element(By.ID, "field-id_country").send_keys("Polska")  # Replace with actual value
+            driver.find_element(By.ID, "field-id_country").send_keys("Polska")  
             driver.find_element(By.ID, "field-phone").send_keys("+1234567890")
 
             continue_button = driver.find_element(By.CSS_SELECTOR, "button[name='confirm-addresses']")
@@ -198,7 +198,7 @@ def fill_in_address_form(driver):
 
 def choose_delivery(driver):
     try:
-        # Wait for the delivery options to load
+        
         WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.ID, "js-delivery"))
         )
@@ -209,7 +209,6 @@ def choose_delivery(driver):
         delivery_option = driver.find_element(By.ID, "delivery_option_16")
         delivery_option.click()
 
-        # Click the "Continue" button
         continue_button = driver.find_element(By.CSS_SELECTOR, "button[name='confirmDeliveryOption']")
         continue_button.click()
 
@@ -220,20 +219,20 @@ def choose_delivery(driver):
 
 def choose_payment_place_order(driver):
     try:
-        # Wait for the payment step to load
+        
         WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.CLASS_NAME, "payment-options"))
         )
 
-        # Select "Cash on Delivery" payment option
+        
         cash_on_delivery_option = driver.find_element(By.ID, "payment-option-2")
         cash_on_delivery_option.click()
 
-        # Agree to terms and conditions
+       
         terms_checkbox = driver.find_element(By.ID, "conditions_to_approve[terms-and-conditions]")
         terms_checkbox.click()
 
-        # Click "Place Order" button
+        
         place_order_button = driver.find_element(By.XPATH, '//div[@id="payment-confirmation"]/div/button')
         place_order_button.click()
 
@@ -311,7 +310,7 @@ email = "siema@onet.pl"
 
 service = Service(executable_path="chromedriver.exe")
 driver = webdriver.Chrome(service=service)
-driver.get("http://localhost:8080/")
+driver.get("https://localhost:8080/")
 
 added_products = add_n_products_to_cart(driver, 10)
 sleep(1)
@@ -323,7 +322,7 @@ product_names_in_cart = get_product_names_from_cart(driver)
 assert added_products == product_names_in_cart, "Products were not added to cart correctly!"
 print("Test 1 passed: Products were added to cart correctly.")
 
-driver.get("http://localhost:8080/")
+driver.get("https://localhost:8080/")
 search_product(driver, "Hummingbird")
 product_name = add_rand_product_to_cart(driver)
 
