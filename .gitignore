@@ -2,3 +2,4 @@
 
 src/cache/
 src/var/cache/
+src/var/logs/dev.log
