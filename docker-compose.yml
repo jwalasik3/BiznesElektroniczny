@@ -23,12 +23,15 @@ services:
       - prestashop
 
   prestashop:
-    image: prestashop/prestashop:1.7.8
+    build:
+      context: ./ssl
+      dockerfile: Dockerfile
     container_name: prestashop
     environment:
       DB_SERVER: mysql
     ports:
       - 8080:80
+      - 8443:443
     volumes:
       - ./src:/var/www/html
     depends_on:
@@ -46,19 +49,6 @@ services:
       - 8081:80
     depends_on:
       - mysql
-    networks:
-      - prestashop
-
-  nginx:
-    image: nginx:latest
-    container_name: nginx
-    ports: 
-      - "443:443"
-    volumes:
-      - ./certs:/etc/nginx/certs
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf
-    depends_on:
-      - prestashop
     networks:
       - prestashop
 
