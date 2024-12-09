@@ -18,6 +18,8 @@ closing popup info about product added to the shopping cart
 close_button = driver.find_element(By.XPATH, '//div[@id="blockcart-modal"]//button[@class="close"]')
 close_button.click()
 """
+
+
 def get_products_urls_from_curr_page(driver):
     product_list = driver.find_element(By.ID, "js-product-list")
     product_links = product_list.find_elements(By.CSS_SELECTOR, 'a.thumbnail.product-thumbnail')
@@ -25,24 +27,42 @@ def get_products_urls_from_curr_page(driver):
 
     return product_urls
 
+
 def type_amount_and_add_to_cart(driver, product_url):
     driver.get(product_url)
     quantity_input = driver.find_element(By.ID, "quantity_wanted")
     driver.execute_script("arguments[0].value = '';", quantity_input)
     random_quantity = random.randint(1, 3)
-    quantity_input.send_keys(str(random_quantity))
-    product_name = driver.find_element(By.XPATH, '//div[@class="col-md-6"]/h1').text.lower()
 
     add_to_cart_button = driver.find_element(By.CSS_SELECTOR,
                                              'button.add-to-cart[data-button-action="add-to-cart"]')
 
     is_disabled = add_to_cart_button.get_attribute("disabled")
+
     if is_disabled:
         return None
-    else:
-        add_to_cart_button.click()
+
+    quantity_input.send_keys(str(random_quantity))
+    product_name = driver.find_element(By.XPATH, '//div[@class="col-md-6"]/h1').text.lower()
+    sleep(1)
+
+    add_to_cart_button = driver.find_element(By.CSS_SELECTOR,
+                                             'button.add-to-cart[data-button-action="add-to-cart"]')
+
+    is_disabled = add_to_cart_button.get_attribute("disabled")
+
+    if is_disabled:
+        driver.execute_script("arguments[0].value = '';", quantity_input)
+        quantity_input.send_keys(str(1))
         sleep(1)
+
+    add_to_cart_button = driver.find_element(By.CSS_SELECTOR,
+                                             'button.add-to-cart[data-button-action="add-to-cart"]')
+
+    add_to_cart_button.click()
+    sleep(1)
     return product_name
+
 
 def add_n_products_to_cart(driver, n):
     menu = driver.find_element(By.ID, "_desktop_top_menu")
@@ -50,22 +70,27 @@ def add_n_products_to_cart(driver, n):
     category_urls = [link.get_attribute('href') for link in category_links]
     products_to_add = n
     added_products_set = set()
-    for url in category_urls:
-        driver.get(url)
+    for cat_url in category_urls:
+        driver.get(cat_url)
         product_urls = get_products_urls_from_curr_page(driver)
         for url in product_urls:
             product_name = type_amount_and_add_to_cart(driver, url)
             if product_name is not None:
                 added_products_set.add(product_name)
                 products_to_add -= 1
+            if products_to_add <= n//2 and product_name is not None:
+                break
             if products_to_add == 0:
                 return added_products_set
+    return added_products_set
+
 
 def search_product(driver, search_query):
     search_bar = driver.find_element(By.XPATH, '//div[@id="search_widget"]//input[@type="text"]')
     search_bar.clear()
     search_bar.send_keys(search_query)
     search_bar.send_keys(Keys.RETURN)
+
 
 def add_rand_product_to_cart(driver):
     product_urls = get_products_urls_from_curr_page(driver)
@@ -74,6 +99,7 @@ def add_rand_product_to_cart(driver):
         product_name = type_amount_and_add_to_cart(driver, product_urls[rand_id])
         if product_name is not None:
             return product_name
+
 
 def remove_n_products_from_cart(driver, n):
     shopping_cart = driver.find_element(By.XPATH, '//div[@id="_desktop_cart"]/div/div[@class="header"]//a')
@@ -84,6 +110,7 @@ def remove_n_products_from_cart(driver, n):
         n = len(remove_urls)
     for i in range(n):
         driver.get(remove_urls[i])
+
 
 def register_account(driver, firstname, lastname, email, password):
     try:
@@ -97,7 +124,7 @@ def register_account(driver, firstname, lastname, email, password):
         create_account_url = create_account_link.get_attribute('href')
         driver.get(create_account_url)
 
-        social_title = driver.find_element(By.ID, 'field-id_gender-1')  
+        social_title = driver.find_element(By.ID, 'field-id_gender-1')
         social_title.click()
 
         first_name = driver.find_element(By.ID, 'field-firstname')
@@ -112,15 +139,12 @@ def register_account(driver, firstname, lastname, email, password):
         password_field = driver.find_element(By.ID, 'field-password')
         password_field.send_keys(password)
 
-        
         privacy_checkbox = driver.find_element(By.NAME, 'customer_privacy')
         privacy_checkbox.click()
 
-       
         terms_checkbox = driver.find_element(By.NAME, 'psgdpr')
         terms_checkbox.click()
 
-        
         save_button = driver.find_element(By.XPATH, '//button[@data-link-action="save-customer"]')
         save_button.click()
 
@@ -131,6 +155,7 @@ def register_account(driver, firstname, lastname, email, password):
         print(f"Test failed due to an error: {e}")
     except AssertionError as ae:
         print(f"Test failed: {ae}")
+
 
 def go_to_cart_and_proceed(driver):
     try:
@@ -143,32 +168,32 @@ def go_to_cart_and_proceed(driver):
     except Exception as e:
         print(f"Test 5 failed due to an error: {e}")
 
+
 def sign_in(driver, email, password):
     sign_in_link = driver.find_element(By.XPATH,
                                        '//a[@class="login"]')
     sign_in_url = sign_in_link.get_attribute('href')
     driver.get(sign_in_url)
     try:
-        
+
         email_field = WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.ID, "field-email"))
         )
-        email_field.send_keys(email)  
+        email_field.send_keys(email)
 
-        
         password_field = driver.find_element(By.ID, "field-password")
-        password_field.send_keys(password)  
+        password_field.send_keys(password)
 
-        
         sign_in_button = driver.find_element(By.ID, "submit-login")
         sign_in_button.click()
 
     except Exception as e:
         print(f"An error occurred: {e}")
 
+
 def fill_in_address_form(driver):
     try:
-        
+
         WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.CLASS_NAME, "js-address-form"))
         )
@@ -186,9 +211,9 @@ def fill_in_address_form(driver):
             driver.find_element(By.ID, "field-lastname").send_keys("Doe")
             driver.find_element(By.ID, "field-address1").send_keys("123 Main Street Apartment 4B")
             driver.find_element(By.ID, "field-city").send_keys("New York")
-        
+
             driver.find_element(By.ID, "field-postcode").send_keys("10-001")
-            driver.find_element(By.ID, "field-id_country").send_keys("Polska")  
+            driver.find_element(By.ID, "field-id_country").send_keys("Polska")
             driver.find_element(By.ID, "field-phone").send_keys("+1234567890")
 
             continue_button = driver.find_element(By.CSS_SELECTOR, "button[name='confirm-addresses']")
@@ -196,9 +221,10 @@ def fill_in_address_form(driver):
     except Exception as e:
         print(f"An error occurred: {e}")
 
+
 def choose_delivery(driver):
     try:
-        
+
         WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.ID, "js-delivery"))
         )
@@ -206,8 +232,9 @@ def choose_delivery(driver):
         It might not work after making changes to delivery options
         In that case change the ID
         """
-        delivery_option = driver.find_element(By.ID, "delivery_option_16")
-        delivery_option.click()
+        delivery_option = driver.find_element(By.ID, "delivery_option_20")
+        if delivery_option.is_displayed() and delivery_option.is_enabled():
+            delivery_option.click()
 
         continue_button = driver.find_element(By.CSS_SELECTOR, "button[name='confirmDeliveryOption']")
         continue_button.click()
@@ -217,22 +244,20 @@ def choose_delivery(driver):
     except Exception as e:
         print(f"Test failed, Delivery option not submitted successfully: {e}")
 
+
 def choose_payment_place_order(driver):
     try:
-        
+
         WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.CLASS_NAME, "payment-options"))
         )
 
-        
         cash_on_delivery_option = driver.find_element(By.ID, "payment-option-2")
         cash_on_delivery_option.click()
 
-       
         terms_checkbox = driver.find_element(By.ID, "conditions_to_approve[terms-and-conditions]")
         terms_checkbox.click()
 
-        
         place_order_button = driver.find_element(By.XPATH, '//div[@id="payment-confirmation"]/div/button')
         place_order_button.click()
 
@@ -240,6 +265,7 @@ def choose_payment_place_order(driver):
 
     except Exception as e:
         print(f"Payment method wasn't chosen successfully.: {e}")
+
 
 def go_to_account_page(driver):
     try:
@@ -251,6 +277,7 @@ def go_to_account_page(driver):
     except Exception as e:
         print(f"An error occurred: {e}")
 
+
 def go_to_order_history(driver):
     try:
         history_link_element = WebDriverWait(driver, 10).until(
@@ -260,6 +287,7 @@ def go_to_order_history(driver):
         driver.get(history_link)
     except Exception as e:
         print(f"An error occurred: {e}")
+
 
 def get_order_status_and_invoice(driver):
     try:
@@ -277,6 +305,7 @@ def get_order_status_and_invoice(driver):
     except Exception as e:
         print(f"An error occurred: {e}")
 
+
 def close_popup(driver):
     try:
         close_button = WebDriverWait(driver, 10).until(
@@ -285,6 +314,7 @@ def close_popup(driver):
         close_button.click()
     except TimeoutException:
         print("Close button did not appear within the given time.")
+
 
 def get_product_names_from_cart(driver):
     try:
@@ -300,6 +330,7 @@ def get_product_names_from_cart(driver):
     except Exception as e:
         print(f"An error occurred: {e}")
 
+
 def go_to_cart(driver):
     shopping_cart = driver.find_element(By.XPATH, '//div[@id="_desktop_cart"]/div/div[@class="header"]//a')
     shopping_cart.click()
@@ -310,7 +341,12 @@ email = "siema@onet.pl"
 
 service = Service(executable_path="chromedriver.exe")
 driver = webdriver.Chrome(service=service)
-driver.get("https://localhost:8080/")
+driver.get("https://localhost:8443/")
+
+advanced_button = driver.find_element(By.ID, 'details-button')
+advanced_button.click()
+proceed_link = driver.find_element(By.ID, 'proceed-link')
+proceed_link.click()
 
 added_products = add_n_products_to_cart(driver, 10)
 sleep(1)
@@ -322,8 +358,8 @@ product_names_in_cart = get_product_names_from_cart(driver)
 assert added_products == product_names_in_cart, "Products were not added to cart correctly!"
 print("Test 1 passed: Products were added to cart correctly.")
 
-driver.get("https://localhost:8080/")
-search_product(driver, "Hummingbird")
+driver.get("https://localhost:8443/")
+search_product(driver, "przypinka")
 product_name = add_rand_product_to_cart(driver)
 
 close_popup(driver)
@@ -353,4 +389,5 @@ order_status = get_order_status_and_invoice(driver)
 assert order_status == "Oczekiwanie na płatność przy odbiorze", "Wrong order status"
 print("Test 8 passed: Order status is correct.")
 
+sleep(30)
 driver.quit()
