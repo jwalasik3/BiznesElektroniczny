@@ -37,7 +37,9 @@
 
 <section class="learn to crochet" style="margin: 20px;">
   <h2 class="learn_title" style="text-align:center;">
+  <a href="/27-zbiory-wzorow">
     Naucz się szydełkować >
+    </a>
   </h2>
   <h3 class="learn_subtitle" style="text-align:center;">
 	Zestawy i wzory dla początkujących, aby rozpocząć twoją przygodę z szydełkiem.
@@ -47,7 +49,9 @@
 
 <section class="seasonal kits"  style="margin: 20px;">
   <h2 class="seasonal_title" style="text-align:center;">
+  <a href="/30-zestawy-sezonowe">
     Zestawy Sezonowe >
+    </a>
   </h2>
   <h3 class="seasonal_subtitle" style="text-align:center;">
        Tematyczne, sezonowe zestawy szydełkowe zawierające materiały dla 6 unikalnych wzorów oraz 3 miesiące Członkowstwa Club Crochet Pattern
@@ -72,7 +76,9 @@
 <section class="materials"  style="margin: 20px;">                                                                                   
                      
   <h2 class="materials_title" style="text-align:center;">
+  <a href="/26-materialy">
     Materiały >
+    </a>
   </h2>
   <h3 class="materials_subtitle" style="text-align:center;">                     
   Zaopatrz się w zapasy, w tym w naszą ekskluzywną włóczkę bawełnianą Club Crochet amigurumi.                
