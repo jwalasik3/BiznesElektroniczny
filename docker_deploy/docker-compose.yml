@@ -1,0 +1,27 @@
+services:
+  prestashop:
+    image: hil4rion/be_193275_prestashop
+    ports:
+      - "19327:443" # SPRAWDZAĆ CZY NIE ZAJĘTY!!
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 2
+        window: 100s
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+    environment:
+      DB_SERVER: admin-mysql_db.1.l98q1e4h4cnparwuxzj1eqk2r
+      DB_NAME: BE_193275
+      DB_USER: root
+      DB_PASSWD: student
+      PS_DEV_MODE: 1
+      PS_INSTALL_AUTO: 1
+    networks:
+      - admin-mysql_default
+networks:
+  admin-mysql_default:
+    external: true
