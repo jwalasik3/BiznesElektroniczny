@@ -1,60 +1,74 @@
-version: '3.9'
-
 services:
-  web:
-    image: php:7.4-fpm
-    container_name: php-fpm
-    volumes:
-      - ./src:/var/www/html
+  #admin-mysql_db:
+   # image: mysql:8
+    #container_name: admin-mysql_db
+    #environment:
+    #  MYSQL_DATABASE: BE_193275
+     # MYSQL_ROOT_PASSWORD: student
+    #ports:
+     # - 3306:3306
+    #volumes:
+     # - db_data:/var/lib/mysql
+      #- ./prestashop_backup.sql:/docker-entrypoint-initdb.d/prestashop_backup.sql
+    #networks:
+     # - prestashop
+
+  memcache:
+    image: memcached
+    user: 1000:1000
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 2
+        window: 140s
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
     networks:
-      - prestashop
-  mysql:
-    image: mysql:8
-    container_name: prestashop-db
-    environment:
-      MYSQL_DATABASE: prestashop
-      MYSQL_ROOT_PASSWORD: prestashop
-    ports:
-      - 3306:3306
-    volumes:
-      - db_data:/var/lib/mysql
-      - ./prestashop_backup.sql:/docker-entrypoint-initdb.d/prestashop_backup.sql
-    networks:
-      - prestashop
+      - prestashop_and_cache
 
   prestashop:
     build:
-      context: ./ssl
+      context: .
       dockerfile: Dockerfile
     container_name: prestashop
     environment:
-      DB_SERVER: mysql
+      DB_SERVER: admin-mysql_db
+      DB_USER: root
+      DB_PASSWD: student
+      DB_NAME: BE_193275
+      PS_DEV_MODE: 1
+      PS_INSTALL_AUTO: 1
+      CACHE_SYSTEM: Memcached
     ports:
       - 8080:80
-      - 8443:443
+      - 19327:443
     volumes:
       - ./src:/var/www/html
     depends_on:
-      - mysql
+      - admin-mysql_db
     networks:
       - prestashop
+      - prestashop_and_cache
 
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin
-    environment:
-      PMA_HOST: mysql
-      MYSQL_ROOT_PASSWORD: prestashop
-    ports:
-      - 8081:80
-    depends_on:
-      - mysql
-    networks:
-      - prestashop
+  #phpmyadmin:
+   # image: phpmyadmin/phpmyadmin
+    #container_name: phpmyadmin
+    #environment:
+     # PMA_HOST: admin-mysql_db
+      #MYSQL_ROOT_PASSWORD: prestashop
+    #ports:
+     # - 8081:80
+    #depends_on:
+     # - admin-mysql_db
+    #networks:
+     # - prestashop
 
 networks:
   prestashop:
+  prestashop_and_cache:
 
 volumes:
   db_data:
-

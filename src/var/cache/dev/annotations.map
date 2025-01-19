@@ -215,4 +215,5 @@
   215 => 'PrestaShop\\Module\\PsAccounts\\Api\\Controller\\RestMethod',
   216 => 'PrestaShop\\Module\\PsAccounts\\Entity\\EmployeeAccount',
   217 => 'PrestaShop\\Module\\PsAccounts\\Polyfill\\Traits\\Controller\\AjaxRender',
+  218 => 'PrestaShop\\Module\\PsEventbus\\Controller\\AbstractApiController',
 );
