@@ -1,0 +1,18 @@
+{
+	"OutputFiles": [
+		"..\\..\\..\\x64\\UnrealGame\\Shipping\\DTrackPlugin\\PCH.DTrackPlugin.h.obj",
+		"..\\..\\..\\x64\\UnrealGame\\Shipping\\DTrackPlugin\\Module.DTrackPlugin.cpp.obj",
+		"..\\..\\..\\x64\\UnrealGame\\Shipping\\DTrackPlugin\\DTrackData.cpp.obj",
+		"..\\..\\..\\x64\\UnrealGame\\Shipping\\DTrackPlugin\\DTrackInterface.cpp.obj",
+		"..\\..\\..\\x64\\UnrealGame\\Shipping\\DTrackPlugin\\DTrackLiveLinkRetargetAsset.cpp.obj",
+		"..\\..\\..\\x64\\UnrealGame\\Shipping\\DTrackPlugin\\DTrackLiveLinkRole.cpp.obj",
+		"..\\..\\..\\x64\\UnrealGame\\Shipping\\DTrackPlugin\\DTrackLiveLinkSource.cpp.obj",
+		"..\\..\\..\\x64\\UnrealGame\\Shipping\\DTrackPlugin\\DTrackLiveLinkSourceFactory.cpp.obj",
+		"..\\..\\..\\x64\\UnrealGame\\Shipping\\DTrackPlugin\\DTrackNet.cpp.obj",
+		"..\\..\\..\\x64\\UnrealGame\\Shipping\\DTrackPlugin\\DTrackParse.cpp.obj",
+		"..\\..\\..\\x64\\UnrealGame\\Shipping\\DTrackPlugin\\DTrackParser.cpp.obj",
+		"..\\..\\..\\x64\\UnrealGame\\Shipping\\DTrackPlugin\\DTrackPlugin.cpp.obj",
+		"..\\..\\..\\x64\\UnrealGame\\Shipping\\DTrackPlugin\\DTrackSDK.cpp.obj",
+		"..\\..\\..\\x64\\UnrealGame\\Shipping\\DTrackPlugin\\DTrackSDKHandler.cpp.obj"
+	]
+}

@@ -1,0 +1,7 @@
+{
+	"OutputFiles": [
+		"..\\..\\..\\x64\\UnrealGame\\Development\\DTrackInput\\PCH.DTrackInput.h.obj",
+		"..\\..\\..\\x64\\UnrealGame\\Development\\DTrackInput\\DTrackFlystickInputDevice.cpp.obj",
+		"..\\..\\..\\x64\\UnrealGame\\Development\\DTrackInput\\DTrackInputModule.cpp.obj"
+	]
+}

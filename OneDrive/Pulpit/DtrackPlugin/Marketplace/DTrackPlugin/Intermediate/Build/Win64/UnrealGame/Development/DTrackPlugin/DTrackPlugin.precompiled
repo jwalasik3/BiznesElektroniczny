@@ -1,0 +1,18 @@
+{
+	"OutputFiles": [
+		"..\\..\\..\\x64\\UnrealGame\\Development\\DTrackPlugin\\PCH.DTrackPlugin.h.obj",
+		"..\\..\\..\\x64\\UnrealGame\\Development\\DTrackPlugin\\Module.DTrackPlugin.cpp.obj",
+		"..\\..\\..\\x64\\UnrealGame\\Development\\DTrackPlugin\\DTrackData.cpp.obj",
+		"..\\..\\..\\x64\\UnrealGame\\Development\\DTrackPlugin\\DTrackInterface.cpp.obj",
+		"..\\..\\..\\x64\\UnrealGame\\Development\\DTrackPlugin\\DTrackLiveLinkRetargetAsset.cpp.obj",
+		"..\\..\\..\\x64\\UnrealGame\\Development\\DTrackPlugin\\DTrackLiveLinkRole.cpp.obj",
+		"..\\..\\..\\x64\\UnrealGame\\Development\\DTrackPlugin\\DTrackLiveLinkSource.cpp.obj",
+		"..\\..\\..\\x64\\UnrealGame\\Development\\DTrackPlugin\\DTrackLiveLinkSourceFactory.cpp.obj",
+		"..\\..\\..\\x64\\UnrealGame\\Development\\DTrackPlugin\\DTrackNet.cpp.obj",
+		"..\\..\\..\\x64\\UnrealGame\\Development\\DTrackPlugin\\DTrackParse.cpp.obj",
+		"..\\..\\..\\x64\\UnrealGame\\Development\\DTrackPlugin\\DTrackParser.cpp.obj",
+		"..\\..\\..\\x64\\UnrealGame\\Development\\DTrackPlugin\\DTrackPlugin.cpp.obj",
+		"..\\..\\..\\x64\\UnrealGame\\Development\\DTrackPlugin\\DTrackSDK.cpp.obj",
+		"..\\..\\..\\x64\\UnrealGame\\Development\\DTrackPlugin\\DTrackSDKHandler.cpp.obj"
+	]
+}
